@@ -83,4 +83,16 @@ FROM `categories` c1
          LEFT JOIN `categories` c2
                    ON c1.parent_sid = c2.sid;
 
+-- sub-query 子查詢
+
+SELECT * FROM `products` WHERE `sid` IN (
+    SELECT `product_sid` FROM `order_details` WHERE `order_sid`=10
+);
+
+SELECT * FROM `products` p
+    JOIN (
+        SELECT `product_sid`, `price` od_price, `quantity` FROM `order_details` WHERE `order_sid`=10
+    ) od ON p.`sid`=od.`product_sid`;
+
+
 
