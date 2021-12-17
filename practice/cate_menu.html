@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-
-
+<textarea id="ta" cols="80" rows="30"></textarea>
+<pre id="pre"></pre>
 <script>
     const oriData = [
         {"sid":"1","name":"程式設計","parent_sid":"0"},
@@ -42,6 +42,9 @@
 
 
     console.log(resultData);
+
+    document.querySelector('#ta').value = JSON.stringify(resultData, null, 4);
+    document.querySelector('#pre').innerHTML = JSON.stringify(resultData, null, 4);
 </script>
 </body>
 </html>
