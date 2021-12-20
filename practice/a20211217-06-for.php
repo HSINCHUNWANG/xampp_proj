@@ -18,7 +18,7 @@
 <table>
     <tr>
         <?php for($i=0; $i<=255; $i+=17): ?>
-        <td style="background-color: #0000<?= sprintf("%'.02X", $i)?>">
+        <td style="background-color: #0000<?= sprintf("%'02X", $i)?>">
         </td>
         <?php endfor; ?>
     </tr>
