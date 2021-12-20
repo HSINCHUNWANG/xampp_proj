@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
 
-                    <form method="get" action="a20211220-06-form_.php">
+                    <form method="post" action="a20211220-06-form_.php">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Email address</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" name="email">
