@@ -1,6 +1,12 @@
 <?php
 require __DIR__. '/parts/__connect_db.php';
 
+$t_sql = "SELECT COUNT(1) FROM address_book";
+
+// 總筆數
+$totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0];
+
+
 $sql = "SELECT * FROM address_book";
 
 $rows = $pdo->query($sql)->fetchAll();
@@ -10,7 +16,11 @@ $rows = $pdo->query($sql)->fetchAll();
 <?php include __DIR__. '/parts/__html_head.php' ?>
 <?php include __DIR__. '/parts/__navbar.php' ?>
 <div class="container">
-
+    <div class="row">
+        <div class="col">
+            <?=  $totalRows ?>
+        </div>
+    </div>
     <div class="row">
         <div class="col">
             <table class="table table-striped table-bordered">
