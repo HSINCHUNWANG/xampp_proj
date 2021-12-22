@@ -21,6 +21,7 @@ if(isset($_POST['account']) and isset($_POST['password'])){
                 <div class="card-body">
                     <?php if(isset($_SESSION['user'])): ?>
                         <h5 class="card-title">Hello <?= $_SESSION['user'] ?></h5>
+                    <p><a href="a20211222-03-logout-user.php">登出</a></p>
                     <?php else: ?>
                         <h5 class="card-title">Login</h5>
 
