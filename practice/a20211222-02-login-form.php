@@ -1,9 +1,14 @@
 <?php
 session_start();
 
-if(isset($_POST['account'])){
-    print_r($_POST);
-    exit;
+if(isset($_POST['account']) and isset($_POST['password'])){
+
+    if($_POST['account']=='shin' and $_POST['password']=='1234'){
+
+        $_SESSION['user'] = 'shin';
+    }
+    // print_r($_POST);
+    // exit;
 }
 
 ?>
@@ -14,20 +19,23 @@ if(isset($_POST['account'])){
             <div class="card" >
 
                 <div class="card-body">
-                    <h5 class="card-title">Login</h5>
+                    <?php if(isset($_SESSION['user'])): ?>
+                        <h5 class="card-title">Hello <?= $_SESSION['user'] ?></h5>
+                    <?php else: ?>
+                        <h5 class="card-title">Login</h5>
 
-                    <form method="post">
-                        <div class="mb-3">
-                            <label for="account" class="form-label">Account</label>
-                            <input type="text" class="form-control" id="account" name="account">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-
+                        <form method="post">
+                            <div class="mb-3">
+                                <label for="account" class="form-label">Account</label>
+                                <input type="text" class="form-control" id="account" name="account">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    <?php endif; ?>
 
                 </div>
             </div>
