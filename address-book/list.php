@@ -24,11 +24,17 @@ $rows = $pdo->query($sql)->fetchAll();
         <div class="col">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="#">
+                            <i class="fas fa-arrow-circle-left"></i>
+                        </a></li>
+                    <?php for($i=1; $i<=$totalPages; $i++): ?>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                        </li>
+                    <?php endfor; ?>
+                    <li class="page-item"><a class="page-link" href="#">
+                            <i class="fas fa-arrow-circle-right"></i>
+                        </a></li>
                 </ul>
             </nav>
         </div>
