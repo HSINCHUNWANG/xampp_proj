@@ -4,7 +4,10 @@ require __DIR__. '/parts/__connect_db.php';
 $perPage = 5;
 
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-
+if($page < 1){
+    header('Location: list.php');
+    exit;
+}
 
 
 $t_sql = "SELECT COUNT(1) FROM address_book";
@@ -12,7 +15,10 @@ $t_sql = "SELECT COUNT(1) FROM address_book";
 // 總筆數
 $totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0];
 $totalPages = ceil($totalRows/$perPage);
-
+if($page > $totalPages){
+    header('Location: list.php?page='. $totalPages);
+    exit;
+}
 
 
 $sql = sprintf("SELECT * FROM address_book LIMIT %s, %s", ($page-1)*$perPage, $perPage);
@@ -28,15 +34,15 @@ $rows = $pdo->query($sql)->fetchAll();
         <div class="col">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">
+                    <li class="page-item <?= 1==$page ? 'disabled' : '' ?>"><a class="page-link" href="?page=<?= $page-1 ?>">
                             <i class="fas fa-arrow-circle-left"></i>
                         </a></li>
                     <?php for($i=1; $i<=$totalPages; $i++): ?>
-                        <li class="page-item">
+                        <li class="page-item <?= $i==$page ? 'active' : '' ?>">
                             <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
                         </li>
                     <?php endfor; ?>
-                    <li class="page-item"><a class="page-link" href="#">
+                    <li class="page-item <?= $totalPages==$page ? 'disabled' : '' ?>"><a class="page-link" href="?page=<?= $page+1 ?>">
                             <i class="fas fa-arrow-circle-right"></i>
                         </a></li>
                 </ul>
