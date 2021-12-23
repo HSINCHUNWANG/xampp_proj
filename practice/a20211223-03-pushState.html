@@ -32,7 +32,12 @@ document.querySelector('.cont').addEventListener('click', event=>{
 
             break;
     }
-})
+});
+
+window.addEventListener('popstate', event=>{
+    console.log(event.state);
+    console.log(location.href);
+});
 
 </script>
 </body>
