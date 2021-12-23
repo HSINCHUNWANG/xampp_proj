@@ -3,6 +3,10 @@ require __DIR__. '/parts/__connect_db.php';
 
 $perPage = 5;
 
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+
+
+
 $t_sql = "SELECT COUNT(1) FROM address_book";
 
 // 總筆數
@@ -11,7 +15,7 @@ $totalPages = ceil($totalRows/$perPage);
 
 
 
-$sql = "SELECT * FROM address_book";
+$sql = sprintf("SELECT * FROM address_book LIMIT %s, %s", ($page-1)*$perPage, $perPage);
 
 $rows = $pdo->query($sql)->fetchAll();
 
