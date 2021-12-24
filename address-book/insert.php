@@ -14,8 +14,8 @@ $pageName = 'insert';
             <div class="card" >
                 <div class="card-body">
                     <h5 class="card-title">新增通訊資料</h5>
-<!--  `name`, `email`, `mobile`, `birthday`, `address` -->
-                    <form name="form1" method="post">
+
+                    <form name="form1" onsubmit="sendData(); return false;">
                         <div class="mb-3">
                             <label for="name" class="form-label">name</label>
                             <input type="text" class="form-control" id="name" name="name">
@@ -60,6 +60,15 @@ $pageName = 'insert';
 <?php include __DIR__. '/parts/__scripts.php' ?>
 <script>
     function sendData(){
+        const fd = new FormData(document.form1);
+
+        fetch('insert-api.php',{
+            method: 'POST',
+            body: fd,
+        }).then(r=>r.json())
+        .then(obj=>{
+            console.log(obj);
+        })
 
     }
 </script>
