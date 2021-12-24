@@ -20,7 +20,7 @@
                     <a class="nav-link <?= $pageName=='list' ? 'active disabled' : '' ?>" href="list.php">列表</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link <?= $pageName=='insert' ? 'active disabled' : '' ?>" href="insert.php">新增</a>
                 </li>
 
 
