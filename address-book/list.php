@@ -1,7 +1,7 @@
 <?php
 require __DIR__. '/parts/__connect_db.php';
 
-$perPage = 5;
+$perPage = 2;
 
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 if($page < 1){
@@ -37,11 +37,13 @@ $rows = $pdo->query($sql)->fetchAll();
                     <li class="page-item <?= 1==$page ? 'disabled' : '' ?>"><a class="page-link" href="?page=<?= $page-1 ?>">
                             <i class="fas fa-arrow-circle-left"></i>
                         </a></li>
-                    <?php for($i=1; $i<=$totalPages; $i++): ?>
+                    <?php for($i=$page-2; $i<=$page+2; $i++)
+                        if($i>=1 && $i<=$totalPages):
+                            ?>
                         <li class="page-item <?= $i==$page ? 'active' : '' ?>">
                             <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
                         </li>
-                    <?php endfor; ?>
+                    <?php endif; ?>
                     <li class="page-item <?= $totalPages==$page ? 'disabled' : '' ?>"><a class="page-link" href="?page=<?= $page+1 ?>">
                             <i class="fas fa-arrow-circle-right"></i>
                         </a></li>
