@@ -1,7 +1,9 @@
 <?php
 require __DIR__. '/parts/__connect_db.php';
+$title = '通訊錄列表';
+$pageName = 'list';
 
-$perPage = 2;
+$perPage = 5;
 
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 if($page < 1){

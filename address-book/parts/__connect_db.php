@@ -19,4 +19,6 @@ try{
     echo '**** *****'. $ex->getMessage();
 }
 
+$title = '';
+$pageName = '';
 

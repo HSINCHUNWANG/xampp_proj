@@ -1,3 +1,11 @@
+<style>
+    .navbar-light .navbar-nav .nav-link.active {
+        color: white;
+        background-color: #519ac7;
+        border-radius: 5px;
+
+    }
+</style>
 <div class="container">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
