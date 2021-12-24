@@ -9,6 +9,7 @@ $output = [
 
 $name = $_POST['name'] ?? '';
 $email = $_POST['email'] ?? '';
+$mobile = $_POST['mobile'] ?? '';
 
 
 // TODO: 檢查欄位資料
@@ -22,6 +23,11 @@ if(empty($email) or !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $output['error'] = '請輸入正確的email';
     echo json_encode($output); exit;
 }
+if(empty($mobile) or !preg_match("/^09\d{2}-?\d{3}-?\d{3}$/", $mobile)) {
+    $output['code'] = 407;
+    $output['error'] = '請輸入正確的手機號碼';
+    echo json_encode($output); exit;
+}
 
 
 
@@ -29,16 +35,17 @@ if(empty($email) or !filter_var($email, FILTER_VALIDATE_EMAIL)) {
 $sql = "INSERT INTO `address_book`(
                            `name`, `email`, `mobile`, `birthday`, `address`, `created_at`
                            ) VALUES (?, ?, ?, ?, ?, NOW() )";
-/*
-    $_POST['name'] ?? '',
-    $_POST['email'] ?? '',
-    $_POST['mobile'] ?? '',
-    $_POST['birthday'] ?? '',
-    $_POST['address'] ?? ''
-*/
-// echo $sql; exit;  // 除錯
 
-$stmt = $pdo->query($sql);
+$stmt = $pdo->prepare($sql);
+
+$stmt->execute([
+    $name,
+    $email,
+    $mobile,
+    $_POST['birthday'] ?? '',
+    $_POST['address'] ?? '',
+]);
+
 
 $output['success'] = $stmt->rowCount()==1;
 $output['rowCount'] = $stmt->rowCount();
