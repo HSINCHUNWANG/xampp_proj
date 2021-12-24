@@ -19,6 +19,7 @@ $sql = sprintf("INSERT INTO `address_book`(
     $_POST['birthday'] ?? '',
     $_POST['address'] ?? ''
 );
+// echo $sql; exit;  // 除錯
 
 $stmt = $pdo->query($sql);
 
