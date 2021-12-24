@@ -111,6 +111,12 @@ $pageName = 'insert';
             }).then(r => r.json())
                 .then(obj => {
                     console.log(obj);
+                    if(obj.success){
+                        alert('新增成功');
+                        location.href = 'list.php';
+                    } else {
+                        alert(obj.error || '資料新增發生錯誤');
+                    }
                 })
         }
 
