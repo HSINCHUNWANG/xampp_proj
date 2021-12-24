@@ -18,13 +18,13 @@ $pageName = 'insert';
                     <form name="form1" onsubmit="sendData(); return false;">
                         <div class="mb-3">
                             <label for="name" class="form-label">name *</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
+                            <input type="text" class="form-control" id="name" name="name">
                             <div class="form-text"></div>
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="form-label">email</label>
-                            <input type="email" class="form-control" id="email" name="email">
+                            <input type="text" class="form-control" id="email" name="email">
                             <div class="form-text"></div>
                         </div>
                         <div class="mb-3">
@@ -63,16 +63,41 @@ $pageName = 'insert';
 
 <?php include __DIR__. '/parts/__scripts.php' ?>
 <script>
-    function sendData(){
-        const fd = new FormData(document.form1);
+    const name = document.querySelector('#name');
+    const email = document.querySelector('#email');
+    const mobile = document.querySelector('#mobile');
 
-        fetch('insert-api.php',{
-            method: 'POST',
-            body: fd,
-        }).then(r=>r.json())
-        .then(obj=>{
-            console.log(obj);
-        })
+
+    function sendData(){
+
+        name.nextElementSibling.innerHTML = '';
+        email.nextElementSibling.innerHTML = '';
+        mobile.nextElementSibling.innerHTML = '';
+
+        let isPass = true;
+        // 檢查表單的資料
+        if(name.value.length < 2){
+            isPass = false;
+            name.nextElementSibling.innerHTML = '請輸入正確的姓名';
+
+        }
+
+
+
+
+
+
+        if(false) {
+            const fd = new FormData(document.form1);
+
+            fetch('insert-api.php', {
+                method: 'POST',
+                body: fd,
+            }).then(r => r.json())
+                .then(obj => {
+                    console.log(obj);
+                })
+        }
 
     }
 </script>
