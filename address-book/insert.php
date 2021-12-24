@@ -8,6 +8,11 @@ $pageName = 'insert';
 ?>
 <?php include __DIR__. '/parts/__html_head.php' ?>
 <?php include __DIR__. '/parts/__navbar.php' ?>
+<style>
+    form .form-text {
+        color: red;
+    }
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -67,6 +72,8 @@ $pageName = 'insert';
     const email = document.querySelector('#email');
     const mobile = document.querySelector('#mobile');
 
+    const email_re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    const mobile_re = /^09\d{2}-?\d{3}-?\d{3}$/;
 
     function sendData(){
 
@@ -81,13 +88,21 @@ $pageName = 'insert';
             name.nextElementSibling.innerHTML = '請輸入正確的姓名';
 
         }
+        if(email.value && !email_re.test(email.value)){
+            isPass = false;
+            email.nextElementSibling.innerHTML = '請輸入正確的email';
+        }
+        if(mobile.value && !mobile_re.test(mobile.value)){
+            isPass = false;
+            mobile.nextElementSibling.innerHTML = '請輸入正確的手機號碼';
+        }
 
 
 
 
 
 
-        if(false) {
+        if(isPass) {
             const fd = new FormData(document.form1);
 
             fetch('insert-api.php', {
