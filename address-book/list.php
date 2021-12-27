@@ -59,6 +59,9 @@ $rows = $pdo->query($sql)->fetchAll();
             <table class="table table-striped table-bordered">
                 <thead>
                 <tr>
+                    <th scope="col">
+                        <input type="checkbox">
+                    </th>
                     <th scope="col"><i class="fas fa-trash-alt"></i></th>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
@@ -72,6 +75,9 @@ $rows = $pdo->query($sql)->fetchAll();
                 <tbody>
                 <?php foreach($rows as $r): ?>
                     <tr>
+                        <td>
+                            <input class="del" type="checkbox">
+                        </td>
                         <td>
                             <!--
                             <a href="delete.php?sid=<?= $r['sid'] ?>" onclick="return confirm('確定要刪除這筆資料嗎?')">
