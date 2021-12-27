@@ -94,5 +94,27 @@ SELECT * FROM `products` p
         SELECT `product_sid`, `price` od_price, `quantity` FROM `order_details` WHERE `order_sid`=10
     ) od ON p.`sid`=od.`product_sid`;
 
+----
+
+-- 資料表結構 `admins`
+CREATE TABLE `admins` (
+                          `sid` int(11) NOT NULL,
+                          `account` varchar(255) NOT NULL,
+                          `password` varchar(255) NOT NULL,
+                          `nickname` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `admins` (`sid`, `account`, `password`, `nickname`) VALUES
+    (1, 'shinder', '7c4a8d09ca3762af61e59520943dc26494f8941b', '小新');
+
+ALTER TABLE `admins`
+    ADD PRIMARY KEY (`sid`),
+  ADD UNIQUE KEY `account` (`account`);
+
+ALTER TABLE `admins`
+    MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ ----
+SELECT * FROM `admins` WHERE `account`='shinder' AND `password`=SHA1('123456');
+
 
 
