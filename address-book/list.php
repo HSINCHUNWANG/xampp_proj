@@ -59,23 +59,35 @@ $rows = $pdo->query($sql)->fetchAll();
             <table class="table table-striped table-bordered">
                 <thead>
                 <tr>
+                    <th scope="col"><i class="fas fa-trash-alt"></i></th>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Mobile</th>
                     <th scope="col">Birthday</th>
                     <th scope="col">Address</th>
+                    <th scope="col"><i class="fas fa-edit"></i></th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach($rows as $r): ?>
                     <tr>
+                        <td>
+                            <a href="delete.php?sid=<?= $r['sid'] ?>">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
                         <td><?= $r['sid'] ?></td>
                         <td><?= $r['name'] ?></td>
                         <td><?= $r['email'] ?></td>
                         <td><?= $r['mobile'] ?></td>
                         <td><?= $r['birthday'] ?></td>
                         <td><?= htmlentities($r['address']) ?></td>
+                        <td>
+                            <a href="edit.php?sid=<?= $r['sid'] ?>">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
                     </tr>
                 <?php endforeach;  ?>
 
