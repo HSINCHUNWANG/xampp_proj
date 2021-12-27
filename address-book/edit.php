@@ -145,11 +145,11 @@ if(empty($row)){
                 .then(obj => {
                     console.log(obj);
                     if(obj.success){
-                        alert('新增成功');
-                        location.href = 'list.php';
+                        alert('修改成功');
+                        // location.href = 'list.php';
                     } else {
 
-                        document.querySelector('.modal-body').innerHTML = obj.error || '資料新增發生錯誤';
+                        document.querySelector('.modal-body').innerHTML = obj.error || '資料修改發生錯誤';
                         modal.show();
                     }
                 })
