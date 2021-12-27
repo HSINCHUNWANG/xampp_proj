@@ -32,10 +32,11 @@ if(empty($row)){
                     <h5 class="card-title">修改通訊資料</h5>
 
                     <form name="form1" onsubmit="sendData(); return false;">
+                        <input type="hidden" name="sid" value="<?= $row['sid'] ?>">
                         <div class="mb-3">
                             <label for="name" class="form-label">name *</label>
                             <input type="text" class="form-control" id="name" name="name"
-                            value="<?= $row['name'] ?>">
+                            value="<?= htmlentities($row['name']) ?>">
                             <div class="form-text"></div>
                         </div>
 
