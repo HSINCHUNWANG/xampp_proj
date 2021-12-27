@@ -38,6 +38,12 @@ session_start();
             body: fd,
         }).then(r=>r.json()).then(obj=>{
             console.log(obj);
+            if(obj.success){
+                location.href = 'list.php';
+            } else {
+                alert(obj.error);
+            }
+
         });
     }
 

@@ -4,7 +4,7 @@ require __DIR__. '/parts/__connect_db.php';
 $output = [
     'success' => false,
     'code' => 0,
-    'error' => '',
+    'error' => '帳號或密碼錯誤',
 ];
 
 $account = $_POST['account'] ?? '';
@@ -20,7 +20,6 @@ $sql = sprintf("SELECT * FROM `admins` WHERE `account`=%s", $pdo->quote($account
 
 $row = $pdo->query($sql)->fetch();
 if(empty($row) ){
-    $output['error'] = '帳號或密碼錯誤';
     echo json_encode($output, JSON_UNESCAPED_UNICODE);
     exit;
 }
@@ -28,6 +27,7 @@ if(empty($row) ){
 
 if( password_verify($password, $row['password']) ){
     $output['success'] = true;
+    $output['error'] = '';
     $_SESSION['admin'] = [
         'account' => $row['account'],
         'nickname' => $row['nickname'],
