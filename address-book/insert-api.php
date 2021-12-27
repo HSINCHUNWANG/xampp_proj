@@ -7,6 +7,13 @@ $output = [
     'error' => '',
 ];
 
+// 沒有登入管理帳號,就轉向
+if(! isset($_SESSION['admin'])){
+    $output['error'] = '請登入管理帳號';
+    echo json_encode($output, JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
 $name = $_POST['name'] ?? '';
 $email = $_POST['email'] ?? '';
 $mobile = $_POST['mobile'] ?? '';
