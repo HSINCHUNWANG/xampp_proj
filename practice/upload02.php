@@ -4,6 +4,12 @@ header('Content-Type: application/json');
 
 $upload_folder = __DIR__. '/uploaded';
 
+$exts = [
+    'image/jpeg' => '.jpg',
+    'image/png' => '.png',
+    'image/gif' => '.gif',
+];
+
 
 $output = [
     'success' => false,
@@ -11,12 +17,22 @@ $output = [
 ];
 
 if(! empty($_FILES['myfile'])) {
-    $target = $upload_folder. '/'. $_FILES['myfile']['name'];
-    if( move_uploaded_file($_FILES['myfile']['tmp_name'], $target)){
-        $output['success'] = true;
+    $ext = $exts[$_FILES['myfile']['type']];  // 拿到對應的副檔名
+    if(! empty( $ext )){
+
+        $filename = sha1($_FILES['myfile']['name']. rand());
+
+        $target = $upload_folder. '/'. $filename. $ext;
+        if( move_uploaded_file($_FILES['myfile']['tmp_name'], $target)){
+            $output['success'] = true;
+        } else {
+            $output['error'] = '無法移動檔案';
+        }
+
     } else {
-        $output['error'] = '無法移動檔案';
+        $output['error'] = '不合法的檔案類型';
     }
+
 
 } else {
     $output['error'] = '沒有上傳檔案';
