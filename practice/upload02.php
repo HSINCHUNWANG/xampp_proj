@@ -20,11 +20,13 @@ if(! empty($_FILES['myfile'])) {
     $ext = $exts[$_FILES['myfile']['type']];  // 拿到對應的副檔名
     if(! empty( $ext )){
 
-        $filename = sha1($_FILES['myfile']['name']. rand());
+        $filename = sha1($_FILES['myfile']['name']. rand()). $ext;
 
-        $target = $upload_folder. '/'. $filename. $ext;
+        $target = $upload_folder. '/'. $filename;
         if( move_uploaded_file($_FILES['myfile']['tmp_name'], $target)){
             $output['success'] = true;
+            $output['filename'] = $filename;
+            // TODO: 可以將檔案寫入資料表
         } else {
             $output['error'] = '無法移動檔案';
         }
