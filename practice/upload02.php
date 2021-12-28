@@ -17,7 +17,7 @@ $output = [
 ];
 
 if(! empty($_FILES['myfile'])) {
-    $ext = $exts[$_FILES['myfile']['type']];  // 拿到對應的副檔名
+    $ext = $exts[$_FILES['myfile']['type']] ?? '';  // 拿到對應的副檔名
     if(! empty( $ext )){
 
         $filename = sha1($_FILES['myfile']['name']. rand()). $ext;
