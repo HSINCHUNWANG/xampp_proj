@@ -77,12 +77,15 @@
 
     imgsDiv.addEventListener('click', function(event){
         const t = event.target;
-        const filename = t.closest('.img-unit').getAttribute('data-file');
-        console.log(filename);
-        let loc = imgData.indexOf(filename);
-        if(loc!==-1){
-            imgData.splice(loc, 1);
-            renderImgs();
+
+        if(t.classList.contains('del-icon')){
+            const filename = t.closest('.img-unit').getAttribute('data-file');
+            console.log(filename);
+            let loc = imgData.indexOf(filename);
+            if(loc!==-1){
+                imgData.splice(loc, 1);
+                renderImgs();
+            }
         }
     });
 
