@@ -2,8 +2,8 @@
 
 $db_host = 'localhost';
 $db_name = 'mfee23';
-$db_user = 'shinder';
-$db_pass = 'admin';
+$db_user = 'root';
+$db_pass = '';
 
 $dsn = "mysql:host={$db_host};dbname={$db_name};charset=utf8";
 
@@ -13,10 +13,8 @@ $db_options = [
     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
 ];
 
-try{
+try {
     $pdo = new PDO($dsn, $db_user, $db_pass, $db_options);
-} catch (PDOException $ex){
-    echo '**** *****'. $ex->getMessage();
+} catch (PDOException $ex) {
+    echo '**** *****' . $ex->getMessage();
 }
-
-
